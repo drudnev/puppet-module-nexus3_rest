@@ -1,0 +1,41 @@
+nexus3_repository_group:
+  docker-group:
+    ensure                        : 'present'
+    blobstore_name                : 'default'
+    force_basic_auth              : 'true'
+    http_port                     : '7442'
+    online                        : 'true'
+    provider_type                 : 'docker'
+    repositories                  : ['docker-hosted', 'docker-proxy']
+    strict_content_type_validation: 'true'
+    v1_enabled                    : 'true'
+
+  maven-group:
+    ensure                        : 'present'
+    blobstore_name                : 'default'
+    online                        : 'true'
+    provider_type                 : 'maven2'
+    repositories                  : ['maven-artifacts', 'maven-proxy']
+    strict_content_type_validation: 'true'
+
+  maven-public:
+    ensure        : 'present'
+    blobstore_name: 'default'
+    online        : 'true'
+    provider_type : 'maven2'
+    repositories  : ['maven-releases', 'maven-snapshots', 'maven-central']
+
+  nuget:
+    ensure                        : 'present'
+    blobstore_name                : 'default'
+    online                        : 'true'
+    provider_type                 : 'nuget'
+    repositories                  : ['nuget-artifacts', 'nuget-proxy-v3']
+    strict_content_type_validation: 'true'
+
+  nuget-group:
+    ensure        : 'present'
+    blobstore_name: 'default'
+    online        : 'true'
+    provider_type : 'nuget'
+    repositories  : ['nuget-hosted', 'nuget.org-proxy']

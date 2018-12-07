@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  puppet:
+    container_name: puppet_agent
+    image: puppet/puppet-agent:5.1.0
+    entrypoint: "/data/wandenberg-nexus3_rest/test/run.sh"
+    command: [ ]
+    depends_on:
+      - nexus
+    links:
+      - nexus
+    volumes:
+       - .:/data/wandenberg-nexus3_rest
+  nexus:
+    container_name: nexus_server
+    image: sonatype/nexus3:latest
+    # Remove this if you want to see nexus logs
+    logging:
+        driver: none
+    ports:
+      - "8081:8081"
